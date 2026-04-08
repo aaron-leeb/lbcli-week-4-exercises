@@ -11,6 +11,6 @@ utxo1_vout=$(bitcoin-cli -regtest decoderawtransaction $prevrawtxhex | jq -r '.v
 utxo2_vout=$(bitcoin-cli -regtest decoderawtransaction $prevrawtxhex | jq -r '.vout[1] | .n')
 recipient="2MvLcssW49n9atmksjwg2ZCMsEMsoj3pzUP"
 
-rawtxhex=$(bitcoin-cli -regtest -named createrawtransaction inputs='[{"txid":"'$utxo_txid'","vout":'$utxo1_vout'"},{"txid":"'$utxo_txid'","vout":'"$utxo2_vout"'}]' outputs='{"'$recipient'":0.2}' locktime=2041)
+rawtxhex=$(bitcoin-cli -regtest -named createrawtransaction inputs='[{"txid":"'$utxo_txid'","vout":'$utxo1_vout'},{"txid":"'$utxo_txid'","vout":'$utxo2_vout'}]' outputs='{"'$recipient'":0.2}' locktime=2041)
 
 echo $rawtxhex
