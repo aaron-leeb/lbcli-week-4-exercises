@@ -11,7 +11,8 @@ utxo1_vout=$(bitcoin-cli -regtest decoderawtransaction $prevtxhex | jq -r '.vout
 utxo2_vout=$(bitcoin-cli -regtest decoderawtransaction $prevtxhex | jq -r '.vout[1] | .n')
 
 recipient="2MvLcssW49n9atmksjwg2ZCMsEMsoj3pzUP"
-op_return_data="ff95bf771300167016be9d7bf55e0c68d19af1fb18b6e206ea9fd1a08d8947e1"
+# echo -n "btrust builder 2026" | sha256sum
+op_return_data="btrust builder 2026"
 
 
 rawtxhex=$(bitcoin-cli -regtest -named createrawtransaction inputs='[{"txid":"'$utxo_txid'","vout":'$utxo1_vout'},{"txid":"'$utxo_txid'","vout":'$utxo2_vout'}]' outputs='{"data": "'$op_return_data'", "'$recipient'":0.2}')
